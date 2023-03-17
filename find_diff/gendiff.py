@@ -1,6 +1,5 @@
 import json
 import itertools
-import os
 
 
 def unpack_json(file_path: str) -> dict:
