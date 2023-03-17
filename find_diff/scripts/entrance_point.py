@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
 import argparse
+from find_diff.gendiff import generate_diff
 
 
 def main():
@@ -9,8 +9,8 @@ def main():
     parser.add_argument('-f', '--format', type=str, help='set format of output')
     args = parser.parse_args()
     my_namespace = parser.parse_args()
-    print(args.first_file)
-    print(my_namespace.my_optional)
+    diff = generate_diff(args.first_file, args.second_file)
+    print(diff)
 
 
 if __name__ == '__main__':
