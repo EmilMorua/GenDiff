@@ -13,6 +13,7 @@ pytest-cov = "^4.0.0"
 
 [tool.poetry.scripts]
 gendiff = "find_diff.scripts.entrance_point:main"
+pytest = "find_diff.scripts.pytest:main"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
