@@ -12,3 +12,6 @@ package-install:
 
 lint:
 	poetry run flake8 find_diff
+
+pytest:
+	poetry run pytest
