@@ -1,3 +1,6 @@
+import json
+
+
 def get_diff_json(diff_dict):
     """
     Recursively generates a list of differences
@@ -39,4 +42,4 @@ def get_diff_json(diff_dict):
                 'value': value['both']
             })
 
-    return result
+    return json.dumps(result).replace('\\', r'')
