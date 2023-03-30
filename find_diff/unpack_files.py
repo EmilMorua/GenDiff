@@ -22,7 +22,7 @@ def unpack_file(file_path: str) -> dict:
         try:
             format = get_file_format(file_path)
             if format == 'json':
-                content = json.load(file)
+                content = json.load(file, parse_constant=lambda x: x)
             elif format == 'yaml':
                 content = yaml.safe_load(file)
         except FileNotFoundError:
