@@ -6,6 +6,7 @@ def get_diff_plain(diff_dict: dict) -> str:
 
     def process_dict(diff_dict, path=''):
         diff_list = []
+
         for key, value in diff_dict.items():
             current_path = f'{path}.{key}' if path else key
             if isinstance(value, dict) \
@@ -41,6 +42,7 @@ def get_diff_plain(diff_dict: dict) -> str:
                 else:
                     diff_list.append(f"Property {current_path} was "
                                      f"added with value: '{value['dict2']}'\n")
+
         return ''.join(diff_list)
 
     return process_dict(diff_dict)
