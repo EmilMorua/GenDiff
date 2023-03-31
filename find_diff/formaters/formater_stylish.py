@@ -36,28 +36,28 @@ def get_diff_stylish(diff_dict: dict) -> str:
             else:
                 for prefix, dict_key in [("-", "dict1"), ("+", "dict2")]:
                     if dict_key in values \
-                        and isinstance(values[dict_key], dict):
-                            nested_diff = dic_to_string(values[dict_key],
-                                                        depth, indent)
-                            diff_string += (f"{nested_indent[2:]}{prefix}"
-                                            f" {key}: {nested_diff}\n")
-                    elif dict_key in values:
-                            diff_string += (f"{nested_indent[2:]}{prefix}"
-                                            f" {key}: {values[dict_key]}\n")
-                if "both" in values \
-                    and isinstance(values["both"], dict):
-                        nested_diff = dic_to_string(values["both"],
+                            and isinstance(values[dict_key], dict):
+                        nested_diff = dic_to_string(values[dict_key],
                                                     depth, indent)
-                        if ":" in nested_diff:
-                            diff_string += (f"{nested_indent} {key}: "
-                                            f"{{\n{nested_diff}"
-                                            f"{nested_indent}}}\n")
-                        else:
-                            diff_string += (f"{nested_indent} "
-                                            f"{key}: {nested_diff}\n")
+                        diff_string += (f"{nested_indent[2:]}{prefix}"
+                                        f" {key}: {nested_diff}\n")
+                    elif dict_key in values:
+                        diff_string += (f"{nested_indent[2:]}{prefix}"
+                                        f" {key}: {values[dict_key]}\n")
+                if "both" in values \
+                        and isinstance(values["both"], dict):
+                    nested_diff = dic_to_string(values["both"],
+                                                depth, indent)
+                    if ":" in nested_diff:
+                        diff_string += (f"{nested_indent} {key}: "
+                                        f"{{\n{nested_diff}"
+                                        f"{nested_indent}}}\n")
+                    else:
+                        diff_string += (f"{nested_indent} "
+                                        f"{key}: {nested_diff}\n")
                 elif "both" in values:
-                        diff_string += (f"{nested_indent}{key}: "
-                                        f"{values['both']}\n")
+                    diff_string += (f"{nested_indent}{key}: "
+                                    f"{values['both']}\n")
 
         return diff_string
 
