@@ -45,4 +45,4 @@ def get_diff_plain(diff_dict: dict) -> str:
 
         return ''.join(diff_list)
 
-    return process_dict(diff_dict)
+    return process_dict(diff_dict)[:-1]
