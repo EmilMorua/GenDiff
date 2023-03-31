@@ -29,12 +29,8 @@ TEST_DICTS = {
 
 
 EXPECTED_VALUES = {
-    'unpack_js': 'find_diff/tests/fixtures/'
-                 'expected_value/unpack_js.txt',
-    'unpack_yaml': 'find_diff/tests/fixtures/'
-                   'expected_value/unpack_yaml.txt',
-    'compare_empty_dict': 'find_diff/tests/fixtures/'
-                          'expected_value/compare_empty_dict.txt',
+    'unpack': 'find_diff/tests/fixtures/'
+              'expected_value/unpack.txt',
     'compare_empty_from_dict': 'find_diff/tests/fixtures/expected'
                                '_value/compare_empty_from_dict.txt',
     'compare_same_dicts': 'find_diff/tests/fixtures/'
@@ -44,23 +40,23 @@ EXPECTED_VALUES = {
     'compare_flat_dicts': 'find_diff/tests/fixtures/'
                           'expected_value/compare_flat_dicts.txt',
     'for_js_empty_dicts': 'find_diff/tests/fixtures/'
-                            'expected_value/for_js_empty_dicts.txt',
+                          'expected_value/for_js_empty_dicts.txt',
     'for_js_not_diff': 'find_diff/tests/fixtures/'
-                         'expected_value/for_js_not_diff.txt',
+                       'expected_value/for_js_not_diff.txt',
     'for_js_diff_dict': 'find_diff/tests/fixtures/'
                           'expected_value/for_js_diff_dict.txt',
     'for_plain_empty_dicts': 'find_diff/tests/fixtures/'
-                            'expected_value/for_plain_empty_dicts.txt',
+                             'expected_value/for_plain_empty_dicts.txt',
     'for_plain_not_diff': 'find_diff/tests/fixtures/'
-                         'expected_value/for_plain_not_diff.txt',
+                          'expected_value/for_plain_not_diff.txt',
     'for_plain_diff_dict': 'find_diff/tests/fixtures/'
-                          'expected_value/for_plain_diff_dict.txt',
+                           'expected_value/for_plain_diff_dict.txt',
     'for_stylish_empty_dicts': 'find_diff/tests/fixtures/'
                             'expected_value/for_stylish_empty_dicts.txt',
     'for_stylish_not_diff': 'find_diff/tests/fixtures/'
-                         'expected_value/for_stylish_not_diff.txt',
+                            'expected_value/for_stylish_not_diff.txt',
     'for_stylish_diff_dict': 'find_diff/tests/fixtures/'
-                          'expected_value/for_stylish_diff_dict.txt',
+                             'expected_value/for_stylish_diff_dict.txt',
     'stylish_format': 'find_diff/tests/fixtures/'
                       'expected_value/stylish_format.txt',
     'plain_format': 'find_diff/tests/fixtures/'
@@ -109,13 +105,13 @@ def test_get_file_error(test_files):
 
 
 def test_unpack_file_js(test_files, expected_value):
-    expected_value = read_txt_file(expected_value['unpack_js'])
+    expected_value = read_txt_file(expected_value['unpack'])
 
     assert unpack_file(test_files('json')[0]) == expected_value
 
 
 def test_unpack_file_yml(test_files, expected_value):
-    expected_value = read_txt_file(expected_value['unpack_yaml'])
+    expected_value = read_txt_file(expected_value['unpack'])
 
     assert unpack_file(test_files('yaml')[0]) == expected_value
 
@@ -125,14 +121,13 @@ def test_unpack_file_invalid(test_files):
         unpack_file(test_files('invalid')[0])
 
 
-def test_unpack_file_invalid(test_files):
-
+def test_unpack_file_non_existent(test_files):
     with pytest.raises(FileNotFoundError):
         unpack_file(test_files('non-existent')[0])
 
 
 def test_compare_dicts_empty_dicts(test_dicts, expected_value):
-    expected_value = read_txt_file(expected_value['compare_empty_dict'])
+    expected_value = unpack_file(test_dicts('empty_dict'))
     empty_dict = unpack_file(test_dicts('empty_dict'))
 
     assert compare_dicts(empty_dict, empty_dict) == expected_value
@@ -149,9 +144,8 @@ def test_compare_dicts_empty_dict_from_dict(test_dicts, expected_value):
 def test_compare_dicts_same_dicts(test_dicts, expected_value):
     expected_value = read_txt_file(expected_value['compare_same_dicts'])
     dic1 = unpack_file(test_dicts('dict1'))
-    dic2 = unpack_file(test_dicts('dict1'))
 
-    assert compare_dicts(dic1, dic2) == expected_value
+    assert compare_dicts(dic1, dic1) == expected_value
 
 
 def test_compare_dicts_nested_dicts(test_dicts, expected_value):
@@ -169,7 +163,6 @@ def test_compare_dicts_flat_dicts(test_dicts, expected_value):
 
     assert compare_dicts(dic1, dic2) == expected_value
 
-#get_diff_json
 
 def test_get_diff_json_empty_dicts(test_dicts, expected_value):
     expected_value = read_txt_file(expected_value['for_js_empty_dicts'])
@@ -191,7 +184,6 @@ def test_get_diff_json_diff_dict(test_dicts, expected_value):
 
     assert get_diff_json(diff_dict) == expected_value
 
-#get_diff_plain
 
 def test_get_diff_plain_empty_dicts(test_dicts, expected_value):
     expected_value = read_txt_file(expected_value['for_plain_empty_dicts'])
@@ -213,7 +205,6 @@ def test_get_diff_plain_diff_dict(test_dicts, expected_value):
 
     assert get_diff_plain(diff_dict) == expected_value
 
-#get_diff_stylish
 
 def test_get_diff_stylish_empty_dicts(test_dicts, expected_value):
     expected_value = read_txt_file(expected_value['for_stylish_empty_dicts'])
@@ -259,8 +250,9 @@ def test_generate_diff_json_format(test_files, expected_value):
 
     assert generate_diff(file1, file2, 'json') == expected_value
 
+
 def test_generate_diff_yml_file(test_files, expected_value):
-    expected_value = read_txt_file(expected_value['json_file'])
+    expected_value = read_txt_file(expected_value['yaml_file'])
     file1 = unpack_file(test_dicts(test_files('yaml')[0]))
     file2 = unpack_file(test_dicts(test_files('yaml')[1]))
 
