@@ -1,8 +1,13 @@
+from find_diff.convert_bool import convert_dict_values
+
+
 def get_diff_plain(diff_dict: dict) -> str:
     """
     Returns a string representation of the differences
     between two dictionaries.
     """
+
+    diff_dict = convert_dict_values(diff_dict)
 
     def process_dict(diff_dict, path=''):
         diff_list = []
