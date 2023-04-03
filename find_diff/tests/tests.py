@@ -1,4 +1,5 @@
 import pytest
+from find_diff.convert_bool import convert_dict_values
 from find_diff.gendiff import generate_diff
 from find_diff.unpack_files import get_file_format, unpack_file
 from find_diff.formaters.formater_json import get_diff_json
@@ -9,7 +10,8 @@ from find_diff.comparison import compare_dicts
 
 TEST_FILES = {
     'json': ['tests/fixtures/file1.json',
-             'tests/fixtures/file2.json'],
+             'tests/fixtures/file2.json',
+             'tests/fixtures/file3.json'],
     'yaml': ['tests/fixtures/file1.yaml',
              'tests/fixtures/file2.yml'],
     'invalid': ['tests/fixtures/invalid_file.txt'],
@@ -64,7 +66,11 @@ EXPECTED_VALUES = {
     'json_format': 'find_diff/tests/fixtures/'
                    'expected_value/json_format.txt',
     'json_file': 'find_diff/tests/fixtures/'
-                 'expected_value/json_file.txt'
+                 'expected_value/json_file.txt',
+    'convert_flat': 'find_diff/tests/fixtures/'
+                 'expected_value/convert_flat.txt',
+    'convert_nasted': 'find_diff/tests/fixtures/'
+                 'expected_value/convert_nasted.txt'
 }
 
 
@@ -229,38 +235,52 @@ def test_get_diff_stylish_diff_dict(test_dicts, expected_value):
 
 def test_generate_diff_stylish_format(test_files, expected_value):
     expected_value = read_txt_file(expected_value['stylish_format'])
-    file1 = unpack_file(test_dicts(test_files('json')[0]))
-    file2 = unpack_file(test_dicts(test_files('json')[1]))
+    file1 = test_files('json')[0]
+    file2 = test_files('json')[1]
 
     assert generate_diff(file1, file2) == expected_value
 
 
 def test_generate_diff_plain_format(test_files, expected_value):
     expected_value = read_txt_file(expected_value['plain_format'])
-    file1 = unpack_file(test_dicts(test_files('json')[0]))
-    file2 = unpack_file(test_dicts(test_files('json')[1]))
+    file1 = test_files('json')[0]
+    file2 = test_files('json')[1]
 
     assert generate_diff(file1, file2, 'plain') == expected_value
 
 
 def test_generate_diff_json_format(test_files, expected_value):
     expected_value = read_txt_file(expected_value['json_format'])
-    file1 = unpack_file(test_dicts(test_files('json')[0]))
-    file2 = unpack_file(test_dicts(test_files('json')[1]))
+    file1 = test_files('json')[0]
+    file2 = test_files('json')[1]
 
     assert generate_diff(file1, file2, 'json') == expected_value
 
 
 def test_generate_diff_yml_file(test_files, expected_value):
     expected_value = read_txt_file(expected_value['yaml_file'])
-    file1 = unpack_file(test_dicts(test_files('yaml')[0]))
-    file2 = unpack_file(test_dicts(test_files('yaml')[1]))
+    file1 = test_files('yaml')[0]
+    file2 = test_files('yaml')[1]
 
     assert generate_diff(file1, file2, 'json') == expected_value
 
 
 def test_generate_diff_with_unsupported_format(test_files):
-    file1 = unpack_file(test_dicts(test_files('json')[0]))
-    file2 = unpack_file(test_dicts(test_files('json')[1]))
+    file1 = test_files('json')[0]
+    file2 = test_files('json')[1]
     with pytest.raises(ValueError):
         generate_diff(file1, file2, 'unsupported_format')
+
+
+def test_convert_dict_values_flat(test_files, expected_value):
+    dic = unpack_file(test_files('json')[0])
+    expected_value = read_txt_file(expected_value['convert_flat'])
+
+    assert convert_dict_values(dic) == expected_value
+
+
+def test_convert_dict_values_nested(test_files, expected_value):
+    dic = unpack_file(test_files('json')[2])
+    expected_value = read_txt_file(expected_value['convert_nested'])
+
+    assert convert_dict_values(dic) == expected_value
