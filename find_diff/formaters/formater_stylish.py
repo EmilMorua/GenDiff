@@ -1,3 +1,6 @@
+from find_diff.convert_bool import convert_dict_values
+
+
 def dic_to_string(dic, depth=0, indent=4):
     """Returns a string representation of the given dictionary."""
 
@@ -19,6 +22,8 @@ def get_diff_stylish(diff_dict: dict) -> str:
     Returns a string representation of the difference
     between two dictionariesin the 'stylish' format.
     """
+
+    diff_dict = convert_dict_values(diff_dict)
 
     def build_diff_string(diff_dict: dict,
                           depth: int = 1,
