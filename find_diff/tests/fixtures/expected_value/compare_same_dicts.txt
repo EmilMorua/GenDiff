@@ -1,1 +1,0 @@
-{'follow': {'both': False}, 'host': {'both': 'hexlet.io'}, 'proxy': {'both': '123.234.53.22'}, 'timeout': {'both': 50}}

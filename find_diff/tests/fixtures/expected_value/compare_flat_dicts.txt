@@ -1,1 +1,0 @@
-{'follow': {'dict1': False}, 'host': {'both': 'hexlet.io'}, 'proxy': {'dict1': '123.234.53.22'}, 'timeout': {'dict1': 50, 'dict2': 20}, 'verbose': {'dict2': True}}

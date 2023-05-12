@@ -1,4 +1,0 @@
-Property follow was removed
-Property proxy was removed
-Property timeout was updated. From [complex value] to '20'
-Property verbose was added with value: 'True'
