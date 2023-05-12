@@ -37,14 +37,19 @@ Available Options:
 <!-- USAGE EXAMPLES -->
 ## Examples of using
 
+1. JSON file
 [![JSON file](https://asciinema.org/a/584359.svg)](https://asciinema.org/a/584359)
 
+2. YAML file
 [![YAML file](https://asciinema.org/a/41dP9zq9NTrutW184TUNurwwS.svg)](https://asciinema.org/a/41dP9zq9NTrutW184TUNurwwS)
 
+3. Nested file
 [![Nested file](https://asciinema.org/a/584368.svg)](https://asciinema.org/a/584368)
 
+4. Plain format
 [![Plain format](https://asciinema.org/a/584367.svg)](https://asciinema.org/a/584367)
 
+5. JSON format
 [![JSON format](https://asciinema.org/a/584379.svg)](https://asciinema.org/a/584379)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
