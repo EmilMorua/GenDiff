@@ -22,6 +22,6 @@ jobs:
           pip install poetry
           poetry install
       - name: Run flake8
-        run: flake8 .
+        run: poetry run flake8 .
       - name: Run pytest
-        run: pytest tests/tests.py
+        run: poetry run pytest tests/tests.py
