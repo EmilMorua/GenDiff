@@ -38,9 +38,13 @@ Available Options:
 ## Examples of using
 
 [![JSON file](https://asciinema.org/a/584359.svg)](https://asciinema.org/a/584359)
+
 [![YAML file](https://asciinema.org/a/41dP9zq9NTrutW184TUNurwwS.svg)](https://asciinema.org/a/41dP9zq9NTrutW184TUNurwwS)
+
 [![Nested file](https://asciinema.org/a/584368.svg)](https://asciinema.org/a/584368)
+
 [![Plain format](https://asciinema.org/a/584367.svg)](https://asciinema.org/a/584367)
+
 [![JSON format](https://asciinema.org/a/584379.svg)](https://asciinema.org/a/584379)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
