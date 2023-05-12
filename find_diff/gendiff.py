@@ -36,3 +36,5 @@ def generate_diff(file_path1: str,
         return get_diff_plain(diff_dict)
     elif format_name == 'stylish':
         return get_diff_stylish(diff_dict)
+    else:
+        raise ValueError
