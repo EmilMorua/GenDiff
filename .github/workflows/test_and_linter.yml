@@ -23,5 +23,10 @@ jobs:
           poetry install
       - name: Run flake8
         run: poetry run flake8 .
-      - name: Run pytest
-        run: poetry run pytest tests/tests.py
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.7.4
+        env:
+          CC_TEST_REPORTER_ID: 2add83bc90c5007923a85d73e66eeb2015fbdd6089f2fe81798ba89a97baeb80
+        with:
+          coverageCommand: make pytest
+          debug: true
