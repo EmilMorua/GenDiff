@@ -1,4 +1,6 @@
 import json
+from find_diff.comparison import KEY, TYPE, VALUE, CHILDREN
+from find_diff.comparison import BEFORE_VALUE, AFTER_VALUE, DICT1, DICT2, BOTH
 
 
 def get_diff_json(diff_dict):
@@ -10,36 +12,36 @@ def get_diff_json(diff_dict):
     result = []
     for key, value in diff_dict.items():
         if isinstance(value, dict) \
-                and not {'dict1', 'dict2', 'both'} & set(value.keys()):
+                and not {DICT1, DICT2, BOTH} & set(value.keys()):
             result.append({
-                'key': key,
-                'type': 'hasChildren',
-                'children': get_diff_json(value)
+                KEY: key,
+                TYPE: 'hasChildren',
+                CHILDREN: get_diff_json(value)
             })
-        elif 'dict1' in value and 'dict2' in value:
+        elif DICT1 in value and DICT2 in value:
             result.append({
-                'key': key,
-                'type': 'changed',
-                'beforeValue': value['dict1'],
-                'afterValue': value['dict2']
+                KEY: key,
+                TYPE: 'changed',
+                BEFORE_VALUE: value[DICT1],
+                AFTER_VALUE: value[DICT2]
             })
-        elif 'dict1' in value:
+        elif DICT1 in value:
             result.append({
-                'key': key,
-                'type': 'deleted',
-                'value': value['dict1']
+                KEY: key,
+                TYPE: 'deleted',
+                VALUE: value[DICT1]
             })
-        elif 'dict2' in value:
+        elif DICT2 in value:
             result.append({
-                'key': key,
-                'type': 'added',
-                'value': value['dict2']
+                KEY: key,
+                TYPE: 'added',
+                VALUE: value[DICT2]
             })
-        elif 'both' in value:
+        elif BOTH in value:
             result.append({
-                'key': key,
-                'type': 'unchanged',
-                'value': value['both']
+                KEY: key,
+                TYPE: 'unchanged',
+                VALUE: value['both']
             })
 
     return json.dumps(result).replace('\\', r'')
