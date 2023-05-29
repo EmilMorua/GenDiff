@@ -1,5 +1,15 @@
-import itertools
 from typing import Any
+
+
+KEY = "key"
+TYPE = 'type'
+VALUE = 'value'
+CHILDREN = 'children'
+BEFORE_VALUE = 'beforeValue'
+AFTER_VALUE = 'afterValue'
+DICT1 = 'dict1'
+DICT2 = 'dict2'
+BOTH = 'both'
 
 
 def compare_dicts(dict1: dict, dict2: dict) -> dict[str, dict[str, Any]]:
@@ -18,23 +28,24 @@ def compare_dicts(dict1: dict, dict2: dict) -> dict[str, dict[str, Any]]:
     """
 
     keys1, keys2 = set(dict1.keys()), set(dict2.keys())
-    all_keys = list(set(itertools.chain(keys1, keys2)))
-    all_keys = sorted(all_keys, key=lambda x: x.lower())
+    all_keys = sorted(keys1 | keys2, key=str.lower)
 
     diff_dict = {}
     for key in all_keys:
-        if key in keys1 and key in keys2:
-            if isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
-                nested_diff = compare_dicts(dict1[key], dict2[key])
-                if nested_diff:
-                    diff_dict[key] = nested_diff
-            elif dict1[key] != dict2[key]:
-                diff_dict[key] = {'dict1': dict1[key], 'dict2': dict2[key]}
-            else:
-                diff_dict[key] = {'both': dict1[key]}
-        elif key in keys1:
-            diff_dict[key] = {'dict1': dict1[key]}
+        if key not in keys1:
+            diff_dict[key] = {DICT2: dict2[key]}
+            continue
+        if key not in keys2:
+            diff_dict[key] = {DICT1: dict1[key]}
+            continue
+        if isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
+            nested_diff = compare_dicts(dict1[key], dict2[key])
+            if nested_diff:
+                diff_dict[key] = nested_diff
+                continue
+        if dict1[key] != dict2[key]:
+            diff_dict[key] = {DICT1: dict1[key], DICT2: dict2[key]}
         else:
-            diff_dict[key] = {'dict2': dict2[key]}
+            diff_dict[key] = {BOTH: dict1[key]}
 
     return diff_dict
