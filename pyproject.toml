@@ -20,5 +20,5 @@ gendiff = "find_diff.scripts.entrance_point:main"
 flake8 = "^6.0.0"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=1.1.0"]
 build-backend = "poetry.core.masonry.api"
