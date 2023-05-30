@@ -1,12 +1,12 @@
 import pytest
 import os
-from find_diff.convert_bool import convert_dict_values
-from find_diff.gendiff import generate_diff
-from find_diff.unpack_files import get_file_format, unpack_file
-from find_diff.formaters.formater_json import get_diff_json
-from find_diff.formaters.formater_plain import get_diff_plain
-from find_diff.formaters.formater_stylish import get_diff_stylish
-from find_diff.comparison import compare_dicts
+from gendiff.convert_bool import convert_dict_values
+from gendiff.gendiff import generate_diff
+from gendiff.unpack_files import get_file_format, unpack_file
+from gendiff.formaters.formater_json import get_diff_json
+from gendiff.formaters.formater_plain import get_diff_plain
+from gendiff.formaters.formater_stylish import get_diff_stylish
+from gendiff.comparison import compare_dicts
 
 
 TEST_FILES = {

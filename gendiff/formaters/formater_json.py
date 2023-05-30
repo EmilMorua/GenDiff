@@ -1,6 +1,6 @@
 import json
-from find_diff.comparison import KEY, TYPE, VALUE, CHILDREN
-from find_diff.comparison import BEFORE_VALUE, AFTER_VALUE, DICT1, DICT2, BOTH
+from gendiff.comparison import KEY, TYPE, VALUE, CHILDREN
+from gendiff.comparison import BEFORE_VALUE, AFTER_VALUE, DICT1, DICT2, BOTH
 
 
 def get_diff_json(diff_dict):

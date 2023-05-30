@@ -1,5 +1,5 @@
-from find_diff.convert_bool import convert_dict_values
-from find_diff.comparison import DICT1, DICT2, BOTH
+from gendiff.convert_bool import convert_dict_values
+from gendiff.comparison import DICT1, DICT2, BOTH
 
 
 def dic_to_string(dic, depth=0, indent=4):
