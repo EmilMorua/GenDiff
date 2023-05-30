@@ -14,7 +14,7 @@ coverage = "^7.2.5"
 pyyaml = "^6.0"
 
 [tool.poetry.scripts]
-gendiff = "find_diff.scripts.entrance_point:main"
+gendiff = "gendiff.scripts.entrance_point:main"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
