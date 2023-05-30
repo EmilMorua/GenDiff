@@ -11,7 +11,7 @@ package-install:
 	python3 -m pip install dist/*.whl
 
 lint:
-	poetry run flake8 find_diff
+	poetry run flake8 gendiff
 
 pytest:
 	coverage run -m pytest tests/tests.py
