@@ -41,9 +41,9 @@ def process_updated_value(value, diff_list, current_path):
     dict1_value = value[DICT1]
     dict2_value = value[DICT2]
     if isinstance(dict1_value, str) and isinstance(dict2_value, str):
-        update_text = (f"From {dict1_value} to {dict2_value}")
+        update_text = f"From {repr(dict1_value)} to {repr(dict2_value)}"
     else:
-        update_text = (f"From [complex value] to {dict2_value}")
+        update_text = f"From [complex value] to {repr(dict2_value)}"
     diff_list.append(f"Property '{current_path}' "
                      f"was updated. {update_text}\n")
 
@@ -61,4 +61,4 @@ def process_added_value(value, diff_list, current_path):
     else:
         diff_list.append(
             f"Property '{current_path}' was added "
-            f"with value: {dict2_value}\n")
+            f"with value: {repr(dict2_value)}\n")
