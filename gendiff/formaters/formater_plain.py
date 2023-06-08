@@ -43,7 +43,7 @@ def process_updated_value(value, diff_list, current_path):
     dict2_value = value[DICT2]
     if isinstance(dict1_value, str) and isinstance(dict2_value, str):
         if dict1_value.lower() in ['true', 'false'] and \
-            dict2_value.lower() in ['true', 'false']:
+                dict2_value.lower() in ['true', 'false']:
             update_text = f"From {dict1_value} to {dict2_value}"
         else:
             update_text = f"From '{dict1_value}' to '{dict2_value}'"
