@@ -44,7 +44,8 @@ def process_updated_value(value, diff_list, current_path):
         update_text = (f"From {dict1_value} to {dict2_value}")
     else:
         update_text = (f"From [complex value] to {dict2_value}")
-    diff_list.append(f"Property \'{current_path}\' was updated. {update_text}\n")
+    diff_list.append(f"Property \'{current_path}\' "
+                     f"was updated. {update_text}\n")
 
 
 def process_removed_value(diff_list, current_path):
