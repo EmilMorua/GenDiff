@@ -2,7 +2,6 @@ from gendiff.convert_bool import convert_dict_values
 from gendiff.comparison import DICT1, DICT2, BOTH
 
 
-"""
 def wrap_values_in_quotes(diff_dict):
     for key, value in diff_dict.items():
         if isinstance(value, dict):
@@ -10,7 +9,6 @@ def wrap_values_in_quotes(diff_dict):
         elif value not in ['true', 'false']:
             diff_dict[key] = f"'{value}'"
     return diff_dict
-"""
 
 
 def get_diff_plain(diff_dict: dict) -> str:
@@ -42,13 +40,9 @@ def process_updated_value(value, diff_list, current_path):
     dict1_value = value[DICT1]
     dict2_value = value[DICT2]
     if isinstance(dict1_value, str) and isinstance(dict2_value, str):
-        if dict1_value.lower() in ['true', 'false'] and \
-                dict2_value.lower() in ['true', 'false']:
-            update_text = f"From {dict1_value} to {dict2_value}"
-        else:
-            update_text = f"From '{dict1_value}' to '{dict2_value}'"
+        update_text = (f"From {dict1_value} to {dict2_value}")
     else:
-        update_text = f"From [complex value] to '{dict2_value}'"
+        update_text = (f"From [complex value] to {dict2_value}")
     diff_list.append(f"Property '{current_path}' "
                      f"was updated. {update_text}\n")
 
