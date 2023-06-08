@@ -6,7 +6,7 @@ def wrap_values_in_quotes(diff_dict):
     for key, value in diff_dict.items():
         if isinstance(value, dict):
             wrap_values_in_quotes(value)
-        elif value not in ['true', 'false', '']:
+        elif value not in ['true', 'false']:
             diff_dict[key] = f"'{value}'"
     return diff_dict
 
