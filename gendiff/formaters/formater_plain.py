@@ -45,8 +45,9 @@ def process_added_value(value, diff_list, current_path):
     dict2_value = value[DICT2]
     if isinstance(dict2_value, dict):
         diff_list.append(
-            f"Property '{current_path}' was added with value: [complex value]\n")
+            f"Property '{current_path}' was added "
+            f"with value: [complex value]\n")
     else:
         diff_list.append(
-            f"Property '{current_path}' was added with value: '{dict2_value}'\n"
-            )
+            f"Property '{current_path}' was added "
+            f"with value: '{dict2_value}'\n")
