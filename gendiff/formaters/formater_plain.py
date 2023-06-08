@@ -2,6 +2,7 @@ from gendiff.convert_bool import convert_dict_values
 from gendiff.comparison import DICT1, DICT2, BOTH
 
 
+"""
 def wrap_values_in_quotes(diff_dict):
     for key, value in diff_dict.items():
         if isinstance(value, dict):
@@ -9,6 +10,7 @@ def wrap_values_in_quotes(diff_dict):
         elif value not in ['true', 'false']:
             diff_dict[key] = f"'{value}'"
     return diff_dict
+"""
 
 
 def get_diff_plain(diff_dict: dict) -> str:
@@ -17,7 +19,6 @@ def get_diff_plain(diff_dict: dict) -> str:
     between two dictionaries.
     """
     diff_dict = convert_dict_values(diff_dict)
-    diff_dict = wrap_values_in_quotes(diff_dict)
     diff_list = []
     process_dict(diff_dict, diff_list)
     return ''.join(diff_list)[:-1]
@@ -41,9 +42,13 @@ def process_updated_value(value, diff_list, current_path):
     dict1_value = value[DICT1]
     dict2_value = value[DICT2]
     if isinstance(dict1_value, str) and isinstance(dict2_value, str):
-        update_text = f"From {repr(dict1_value)} to {repr(dict2_value)}"
+        if dict1_value.lower() in ['true', 'false'] and \
+            dict2_value.lower() in ['true', 'false']:
+            update_text = f"From {dict1_value} to {dict2_value}"
+        else:
+            update_text = f"From '{dict1_value}' to '{dict2_value}'"
     else:
-        update_text = f"From [complex value] to {repr(dict2_value)}"
+        update_text = f"From [complex value] to '{dict2_value}'"
     diff_list.append(f"Property '{current_path}' "
                      f"was updated. {update_text}\n")
 
@@ -61,4 +66,4 @@ def process_added_value(value, diff_list, current_path):
     else:
         diff_list.append(
             f"Property '{current_path}' was added "
-            f"with value: {repr(dict2_value)}\n")
+            f"with value: '{dict2_value}'\n")
