@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: gendiff
+Version: 1.0.0
+Summary: CLI utility that allows you to find and display differences between two configuration files in json or yml format.
+Author: Emil Murzin
+Author-email: emil.morua@gmail.com
