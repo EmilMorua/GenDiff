@@ -1,5 +1,5 @@
-from gendiff.convert_bool import convert_dict_values
-from gendiff.comparison import DICT1, DICT2, BOTH
+from convert_bool import convert_dict_values
+from comparison import DICT1, DICT2, BOTH
 
 
 def wrap_values_in_quotes(diff_dict):
