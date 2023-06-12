@@ -55,7 +55,9 @@ def process_updated_value(value, diff_list, current_path):
         dict2_value = "[complex value]"
 
     update_text = f"From {dict1_value} to {dict2_value}"
-    diff_list.append(f"Property '{current_path}' was updated. {update_text}\n")
+    diff_list.append(
+        f"Property '{current_path}' "
+        f"was updated. {update_text}\n")
 
 
 def process_removed_value(diff_list, current_path):
@@ -66,9 +68,11 @@ def process_added_value(value, diff_list, current_path):
     dict2_value = value[DICT2]
     if isinstance(dict2_value, dict):
         diff_list.append(
-            f"Property '{current_path}' was added with value: [complex value]\n")
+            f"Property '{current_path}' was "
+            f"added with value: [complex value]\n")
     else:
         if dict2_value.lower() not in ['true', 'false', 'null']:
             dict2_value = f"'{dict2_value}'"
         diff_list.append(
-            f"Property '{current_path}' was added with value: {dict2_value}\n")
+            f"Property '{current_path}' was "
+            f"added with value: {dict2_value}\n")
