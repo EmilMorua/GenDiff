@@ -39,18 +39,17 @@ def process_dict(diff_dict, diff_list, path=''):
 def process_updated_value(value, diff_list, current_path):
     dict1_value = value[DICT1]
     dict2_value = value[DICT2]
-    if isinstance(dict1_value, str) and isinstance(dict2_value, str):
-        if dict1_value.lower() == 'true':
-            dict1_value = 'true'
-        elif dict1_value.lower() == 'false':
-            dict1_value = 'false'
-        if dict2_value.lower() == 'true':
-            dict2_value = 'true'
-        elif dict2_value.lower() == 'false':
-            dict2_value = 'false'
-        update_text = f"From {dict1_value} to {dict2_value}"
-    else:
-        update_text = f"From [complex value] to {dict2_value}"
+
+    if isinstance(dict1_value, str) and dict1_value.lower() not in ['true', 'false', 'null']:
+        dict1_value = f"'{dict1_value}'"
+    elif not isinstance(dict1_value, str):
+        dict1_value = "[complex value]"
+    if isinstance(dict2_value, str) and dict2_value.lower() not in ['true', 'false', 'null']:
+        dict2_value = f"'{dict2_value}'"
+    elif not isinstance(dict2_value, str):
+        dict2_value = "[complex value]"
+
+    update_text = f"From {dict1_value} to {dict2_value}"
     diff_list.append(f"Property '{current_path}' was updated. {update_text}\n")
 
 
@@ -65,9 +64,7 @@ def process_added_value(value, diff_list, current_path):
             f"Property '{current_path}' was "
             f"added with value: [complex value]\n")
     else:
-        if dict2_value.lower() == 'true':
-            dict2_value = 'true'
-        elif dict2_value.lower() == 'false':
-            dict2_value = 'false'
+        if dict2_value.lower() not in ['true', 'false', 'null']:
+            dict2_value = f"'{dict2_value}'"
         diff_list.append(
             f"Property '{current_path}' was added with value: {dict2_value}\n")
