@@ -79,8 +79,13 @@ def process_added_value(value, diff_list, current_path):
         if isinstance(dict2_value, str) and \
                 dict2_value.lower() not in ['true', 'false', 'null']:
             dict2_value = f"'{dict2_value}'"
-        elif not isinstance(dict2_value, (str, int)):
+        elif isinstance(dict2_value, dict):
             dict2_value = "[complex value]"
         diff_list.append(
             f"Property '{current_path}' was "
             f"added with value: {dict2_value}\n")
+
+
+diff_dict = {"common": {"follow": {"dict2": "false"}, "setting1": {"both": "Value 1"}, "setting2": {"dict1": 200}, "setting3": {"dict1": "true", "dict2": "null"}, "setting4": {"dict2": "blah blah"}, "setting5": {"dict2": {"key5": "value5"}}, "setting6": {"doge": {"wow": {"dict1": "", "dict2": "so much"}}, "key": {"both": "value"}, "ops": {"dict2": "vops"}}}, "group1": {"baz": {"dict1": "bas", "dict2": "bars"}, "foo": {"both": "bar"}, "nest": {"dict1": {"key": "value"}, "dict2": "str"}}, "group2": {"dict1": {"abc": 12345, "deep": {"id": 45}}}, "group3": {"dict2": {"deep": {"id": {"number": 45}}, "fee": 100500}}}
+
+print(get_diff_plain(diff_dict))
