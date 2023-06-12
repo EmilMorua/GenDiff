@@ -8,6 +8,8 @@ def wrap_values_in_quotes(diff_dict):
             wrap_values_in_quotes(value)
         elif isinstance(value, str) and value.lower() in ['true', 'false']:
             diff_dict[key] = value.lower()
+        elif not isinstance(value, str) and not isinstance(value, int):
+            diff_dict[key] = f"'{value}'"
     return diff_dict
 
 
@@ -17,6 +19,7 @@ def get_diff_plain(diff_dict: dict) -> str:
     between two dictionaries.
     """
     diff_dict = convert_dict_values(diff_dict)
+    diff_dict = wrap_values_in_quotes(diff_dict)
     diff_list = []
     process_dict(diff_dict, diff_list)
     return ''.join(diff_list)[:-1]
@@ -63,8 +66,7 @@ def process_added_value(value, diff_list, current_path):
     dict2_value = value[DICT2]
     if isinstance(dict2_value, dict):
         diff_list.append(
-            f"Property '{current_path}' was "
-            f"added with value: [complex value]\n")
+            f"Property '{current_path}' was added with value: [complex value]\n")
     else:
         if dict2_value.lower() not in ['true', 'false', 'null']:
             dict2_value = f"'{dict2_value}'"
