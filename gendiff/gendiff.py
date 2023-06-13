@@ -1,4 +1,4 @@
-from comparison import compare_dicts
+from gendiff.comparison import compare_dicts
 from formaters.formater_json import get_diff_json
 from formaters.formater_plain import get_diff_plain
 from formaters.formater_stylish import get_diff_stylish
