@@ -1,8 +1,8 @@
 from gendiff.comparison import compare_dicts
-from formaters.formater_json import get_diff_json
-from formaters.formater_plain import get_diff_plain
-from formaters.formater_stylish import get_diff_stylish
-from unpack_files import unpack_file
+from gendiff.formaters.formater_json import get_diff_json
+from gendiff.formaters.formater_plain import get_diff_plain
+from gendiff.formaters.formater_stylish import get_diff_stylish
+from gendiff.unpack_files import unpack_file
 
 
 def generate_diff(file_path1: str,
