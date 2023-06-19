@@ -1,3 +1,4 @@
+import json
 from gendiff.comparison import KEY, TYPE, VALUE, CHILDREN
 from gendiff.comparison import BEFORE_VALUE, AFTER_VALUE, DICT1, DICT2, BOTH
 
@@ -17,25 +18,18 @@ def get_diff_json(diff_dict):
                 CHILDREN: get_diff_json(value)
             })
         elif DICT1 in value and DICT2 in value:
-            if isinstance(value[DICT1], dict) or isinstance(value[DICT2], dict):
-                result.append({
-                    KEY: key,
-                    TYPE: 'hasChildren',
-                    CHILDREN: get_diff_json({DICT1: value[DICT1], DICT2: value[DICT2]})
-                })
-            elif value[DICT1] != value[DICT2]:
-                result.append({
-                    KEY: key,
-                    TYPE: 'changed',
-                    BEFORE_VALUE: value[DICT1],
-                    AFTER_VALUE: value[DICT2]
-                })
-            else:
-                result.append({
-                    KEY: key,
-                    TYPE: 'unchanged',
-                    VALUE: value[DICT1]
-                })
+            before_value = value[DICT1]
+            after_value = value[DICT2]
+            if isinstance(before_value, str) and before_value.lower() in ['true', 'false', 'null']:
+                before_value = json.loads(before_value.lower())
+            if isinstance(after_value, str) and after_value.lower() in ['true', 'false', 'null']:
+                after_value = json.loads(after_value.lower())
+            result.append({
+                KEY: key,
+                TYPE: 'changed',
+                BEFORE_VALUE: before_value,
+                AFTER_VALUE: after_value
+            })
         elif DICT1 in value:
             result.append({
                 KEY: key,
