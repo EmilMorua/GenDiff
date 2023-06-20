@@ -2,14 +2,14 @@ from typing import Any
 
 
 KEY = "key"
-TYPE = 'type'
-VALUE = 'value'
-CHILDREN = 'children'
-BEFORE_VALUE = 'beforeValue'
-AFTER_VALUE = 'afterValue'
-DICT1 = 'dict1'
-DICT2 = 'dict2'
-BOTH = 'both'
+TYPE = "type"
+VALUE = "value"
+CHILDREN = "children"
+BEFORE_VALUE = "beforeValue"
+AFTER_VALUE = "afterValue"
+DICT1 = "dict1"
+DICT2 = "dict2"
+BOTH = "both"
 
 
 def compare_dicts(dict1: dict, dict2: dict) -> dict[str, dict[str, Any]]:
