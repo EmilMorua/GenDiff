@@ -1,5 +1,6 @@
 import pytest
 import os
+import json
 from gendiff.convert_bool import convert_dict_values
 from gendiff.gendiff import generate_diff
 from gendiff.unpack_files import get_file_format, unpack_file
@@ -148,7 +149,7 @@ def test_compare_dicts(dic1, dic2, expected_value):
                            EXPECTED_VALUES['js_diff'])])
 def test_get_diff_json(diff_dict, expected_value):
     diff_dict = unpack_file(os.getcwd() + diff_dict)
-    expected_value = read_txt_file(os.getcwd() + expected_value)
+    expected_value = json.dumps(read_txt_file(os.getcwd() + expected_value))
     assert get_diff_json(diff_dict) == expected_value
 
 
