@@ -15,41 +15,35 @@ def get_diff_json(diff_dict):
                 not {DICT1, DICT2, BOTH} & set(value.keys()):
             result.append({
                 KEY: key,
-                TYPE: 'hasChildren',
+                TYPE: "hasChildren",
                 CHILDREN: get_diff_json(value)
             })
         elif DICT1 in value and DICT2 in value:
             before_value = value[DICT1]
             after_value = value[DICT2]
-            if isinstance(before_value, str) and \
-                    before_value.lower() in ['true', 'false', 'null']:
-                before_value = json.loads(before_value.lower())
-            if isinstance(after_value, str) and \
-                    after_value.lower() in ['true', 'false', 'null']:
-                after_value = json.loads(after_value.lower())
             result.append({
                 KEY: key,
-                TYPE: 'changed',
+                TYPE: "changed",
                 BEFORE_VALUE: before_value,
                 AFTER_VALUE: after_value
             })
         elif DICT1 in value:
             result.append({
                 KEY: key,
-                TYPE: 'deleted',
+                TYPE: "deleted",
                 VALUE: value[DICT1]
             })
         elif DICT2 in value:
             result.append({
                 KEY: key,
-                TYPE: 'added',
+                TYPE: "added",
                 VALUE: value[DICT2]
             })
         elif BOTH in value:
             result.append({
                 KEY: key,
-                TYPE: 'unchanged',
+                TYPE: "unchanged",
                 VALUE: value[BOTH]
             })
 
-    return result
+    return json.dumps(result)
