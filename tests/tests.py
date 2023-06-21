@@ -1,6 +1,5 @@
 import pytest
 import os
-import json
 from gendiff.convert_bool import convert_dict_values
 from gendiff.gendiff import generate_diff
 from gendiff.unpack_files import get_file_format, unpack_file
