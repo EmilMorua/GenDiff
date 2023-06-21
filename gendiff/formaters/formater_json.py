@@ -46,4 +46,6 @@ def get_diff_json(diff_dict):
                 VALUE: value[BOTH]
             })
 
-    return json.dumps(result)
+    result = json.dumps(result, ensure_ascii=False, indent=None)
+    result = result.replace("\\", "")
+    return result
