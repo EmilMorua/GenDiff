@@ -10,63 +10,46 @@ from gendiff.comparison import compare_dicts
 
 
 TEST_FILES = {
-              'file1_js': '/tests/fixtures/passed_value/file1.json',
-              'file2_js': '/tests/fixtures/passed_value/file2.json',
-              'file3_js': '/tests/fixtures/passed_value/file3.json',
-              'file4_js': '/tests/fixtures/passed_value/file4.json',
-              'file5_js': '/tests/fixtures/passed_value/file5.json',
-              'file1_yaml': '/tests/fixtures/passed_value/file1.yaml',
-              'file2_yml': '/tests/fixtures/passed_value/file2.yml',
-              'invalid_file': '/tests/fixtures/passed_value/invalid_file.txt',
-              'non_existent': '/tests/fixtures/passed_value/non_existent.txt',
-              'diff_dict': '/tests/fixtures/passed_value/diff_dict.json',
-              'not_diff_dict': '/tests/fixtures/'
-                               'passed_value/not_diff_dict.json'}
+    'file1_js': '/tests/fixtures/passed_value/file1.json',
+    'file2_js': '/tests/fixtures/passed_value/file2.json',
+    'file3_js': '/tests/fixtures/passed_value/file3.json',
+    'file4_js': '/tests/fixtures/passed_value/file4.json',
+    'file5_js': '/tests/fixtures/passed_value/file5.json',
+    'file1_yaml': '/tests/fixtures/passed_value/file1.yaml',
+    'file2_yml': '/tests/fixtures/passed_value/file2.yml',
+    'invalid_file': '/tests/fixtures/passed_value/invalid_file.txt',
+    'non_existent': '/tests/fixtures/passed_value/non_existent.txt',
+    'diff_dict': '/tests/fixtures/passed_value/diff_dict.json',
+    'not_diff_dict': '/tests/fixtures/passed_value/not_diff_dict.json'
+}
 
 
 EXPECTED_VALUES = {
-                   'unpack': '/tests/fixtures/'
-                             'expected_value/unpack.txt',
-                   'compare_empty': '/tests/fixtures/expected_value/'
-                                    'compare_empty_from_dict.txt',
-                   'compare_same': '/tests/fixtures/'
-                                   'expected_value/compare_same_dicts.txt',
-                   'compare_nested': '/tests/fixtures/'
-                                     'expected_value/compare_nested_dicts.txt',
-                   'compare_flat': '/tests/fixtures/'
-                                   'expected_value/compare_flat_dicts.txt',
-                   'js_empty': '/tests/fixtures/'
-                               'expected_value/for_js_empty_dicts.txt',
-                   'js_not_diff': '/tests/fixtures/'
-                                  'expected_value/for_js_not_diff.txt',
-                   'js_diff': '/tests/fixtures/'
-                              'expected_value/for_js_diff_dict.txt',
-                   'plain_empty': '/tests/fixtures/'
-                                  'expected_value/for_plain_empty.txt',
-                   'plain_not_diff': '/tests/fixtures/'
-                                     'expected_value/for_plain_not_diff.txt',
-                   'plain_diff': '/tests/fixtures/'
-                                 'expected_value/for_plain_diff.txt',
-                   'stylish_empty': '/tests/fixtures/'
-                                    'expected_value/for_stylish_empty.txt',
-                   'stylish_not_diff': '/tests/fixtures/expected_value/'
-                                       'for_stylish_not_diff.txt',
-                   'stylish_diff': '/tests/fixtures/'
-                                   'expected_value/for_stylish_diff.txt',
-                   'stylish_format': '/tests/fixtures/'
-                                     'expected_value/stylish_format.txt',
-                   'plain_format': '/tests/fixtures/'
-                                   'expected_value/plain_format.txt',
-                   'json_format': '/tests/fixtures/'
-                                  'expected_value/json_format.txt',
-                   'yaml_file': '/tests/fixtures/'
-                                'expected_value/yaml_file.txt',
-                   'convert_flat': '/tests/fixtures/'
-                                   'expected_value/convert_flat.txt',
-                   'convert_nasted': '/tests/fixtures/'
-                                     'expected_value/convert_nasted.txt',
-                   'empty_dict': '/tests/fixtures/'
-                                 'expected_value/empty_dict.txt'}
+    'unpack': '/tests/fixtures/expected_value/unpack.txt',
+    'compare_empty': '/tests/fixtures/expected_value/'
+                     'compare_empty_from_dict.txt',
+    'compare_same': '/tests/fixtures/expected_value/compare_same_dicts.txt',
+    'compare_nested': '/tests/fixtures/expected_value/'
+                      'compare_nested_dicts.txt',
+    'compare_flat': '/tests/fixtures/expected_value/compare_flat_dicts.txt',
+    'js_empty': '/tests/fixtures/expected_value/for_js_empty_dicts.txt',
+    'js_not_diff': '/tests/fixtures/expected_value/for_js_not_diff.txt',
+    'js_diff': '/tests/fixtures/expected_value/for_js_diff_dict.txt',
+    'plain_empty': '/tests/fixtures/expected_value/for_plain_empty.txt',
+    'plain_not_diff': '/tests/fixtures/expected_value/for_plain_not_diff.txt',
+    'plain_diff': '/tests/fixtures/expected_value/for_plain_diff.txt',
+    'stylish_empty': '/tests/fixtures/expected_value/for_stylish_empty.txt',
+    'stylish_not_diff': '/tests/fixtures/expected_value/'
+                        'for_stylish_not_diff.txt',
+    'stylish_diff': '/tests/fixtures/expected_value/for_stylish_diff.txt',
+    'stylish_format': '/tests/fixtures/expected_value/stylish_format.txt',
+    'plain_format': '/tests/fixtures/expected_value/plain_format.txt',
+    'json_format': '/tests/fixtures/expected_value/json_format.txt',
+    'yaml_file': '/tests/fixtures/expected_value/yaml_file.txt',
+    'convert_flat': '/tests/fixtures/expected_value/convert_flat.txt',
+    'convert_nasted': '/tests/fixtures/expected_value/convert_nasted.txt',
+    'empty_dict': '/tests/fixtures/expected_value/empty_dict.txt'
+}
 
 
 def read_txt_file(file_path):
