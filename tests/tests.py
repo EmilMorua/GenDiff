@@ -59,9 +59,6 @@ def read_txt_file(file_path):
     return contents
 
 
-# get_file
-
-
 @pytest.mark.parametrize('test_files, expected_value',
                          [(TEST_FILES['file1_js'], 'json'),
                           (TEST_FILES['file1_yaml'], 'yaml'),
@@ -73,8 +70,6 @@ def test_get_file_format(test_files, expected_value):
 def test_get_file_error():
     with pytest.raises(ValueError):
         get_file_format(TEST_FILES['invalid_file'])
-
-# unpack_file
 
 
 @pytest.mark.parametrize('path, expected_value',
@@ -93,8 +88,6 @@ def test_unpack_file(path, expected_value):
 def test_unpack_file_errors(path, raises):
     with pytest.raises(raises):
         unpack_file(os.getcwd() + path)
-
-# compare_dict
 
 
 @pytest.mark.parametrize('dic1, dic2, expected_value',
@@ -118,8 +111,6 @@ def test_compare_dicts(dic1, dic2, expected_value):
     dic2 = unpack_file(os.getcwd() + dic2)
     expected_value = eval(read_txt_file(os.getcwd() + expected_value))
     assert compare_dicts(dic1, dic2) == expected_value
-
-# get_diff
 
 
 @pytest.mark.parametrize('diff_dict, expected_value',
@@ -160,8 +151,6 @@ def test_get_diff_stylish(diff_dict, expected_value):
     expected_value = read_txt_file(os.getcwd() + expected_value)
     assert get_diff_stylish(diff_dict) == expected_value
 
-# generate_diff
-
 
 @pytest.mark.parametrize('format, expected_value',
                          [('stylish', EXPECTED_VALUES['stylish_format']),
@@ -186,8 +175,6 @@ def test_generate_diff_unsupported_format():
     file2 = (os.getcwd() + TEST_FILES['file2_js'])
     with pytest.raises(ValueError):
         generate_diff(file1, file2, 'unsupported_format')
-
-# convert_dict
 
 
 @pytest.mark.parametrize('dic, expacted_value',
