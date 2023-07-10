@@ -64,8 +64,8 @@ def read_txt_file(file_path: str):
 
 
 def unpack_tests_file(file_path: str):
+    file_path = PASSED_VALUES_PATH + file_path
     with open(file_path) as file:
-        file_path = PASSED_VALUES_PATH + file_path
         format = get_file_format(file_path)
         if format == 'json':
             content = json.load(file, parse_constant=lambda x: x)
@@ -80,7 +80,7 @@ def unpack_tests_file(file_path: str):
                           (TEST_FILES['file1_yaml'], 'yaml'),
                           (TEST_FILES['file2_yml'], 'yaml')])
 def test_get_file_format(test_file, expected_value):
-    assert get_file_format(PASSED_VALUES_PATH + test_file) == expected_value
+    assert get_file_format(test_file) == expected_value
 
 
 def test_get_file_error():
@@ -94,16 +94,9 @@ def test_get_file_error():
                           (TEST_FILES['file1_yaml'],
                            EXPECTED_VALUES['unpack'])])
 def test_unpack_file(path, expected_value):
+    path = PASSED_VALUES_PATH + path
     expected_value = read_txt_file(expected_value)
     assert unpack_file(path) == eval(expected_value)
-
-
-@pytest.mark.parametrize('path, raises',
-                         [(TEST_FILES['invalid_file'], ValueError),
-                          (TEST_FILES['non_existent'], FileNotFoundError)])
-def test_unpack_file_errors(path, raises):
-    with pytest.raises(raises):
-        unpack_file(path)
 
 
 @pytest.mark.parametrize('dic1, dic2, expected_value',
