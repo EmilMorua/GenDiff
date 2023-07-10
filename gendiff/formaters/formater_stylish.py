@@ -1,4 +1,4 @@
-from gendiff.convert_bool import convert_dict_values
+from gendiff.formaters.convert_bool import convert_dict_values
 from gendiff.comparison import DICT1, DICT2, BOTH
 
 
