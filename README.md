@@ -21,7 +21,15 @@ CLI utility that allows you to find and display differences between two configur
    ```sh
    git clone https://github.com/EmilMorua/python-project-50.git
    ```
-2. Usage
+2. Installing dependencies
+   ```sh
+   make install
+   ```
+3. Building a package
+   ```sh
+   make build
+   ```
+4. Usage
    ```sh
    gendiff [options] file_path1 file_path2
    ```
