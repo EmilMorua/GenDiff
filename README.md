@@ -13,6 +13,19 @@ CLI utility that allows you to find and display differences between two configur
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Technology stack
+
+<p>
+  <img alt="Python" src="https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white" />
+  <img alt="github actions" src="https://img.shields.io/badge/-Github_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white" />
+  <img alt="Pytest" src="https://img.shields.io/badge/-Pytest-0A9EDC?logo=pytest&logoColor=white" />
+  <img alt="flake8" src="https://img.shields.io/badge/-flake8-FFA500?logo=python&logoColor=white" />
+  <img alt="Poetry" src="https://img.shields.io/badge/-Poetry-347EFB?logo=python&logoColor=white" />
+  <img alt="git" src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" />
+</p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ### Installation
 
